@@ -11,6 +11,7 @@ class AdminController extends Controller
 
 
     public function index(){
+        
         $aplications = Aplication::all();
         foreach($aplications as $key=>$item){
             $aplications[$key]->course_id = $this->get_course_from_id($item->course_id);

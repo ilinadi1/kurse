@@ -16,7 +16,22 @@ class CourseController extends Controller
             "categories"=>$category->all()
         ]);
     }
-    public function create(Request $request){
+    public function validate_adminCurse(Request $request){
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'cost' => 'required',
+            'duration' => 'required',
+            'image' => 'required',
+        ],
+    [
+        'title.required' => 'Поле обязательно для заполнения',
+        'description.required' => 'Поле обязательно для заполнения',
+        'cost.required' => 'Поле обязательно для заполнения',
+        'duration.required' => 'Поле обязательно для заполнения',
+        'image.required' => 'Поле обязательно для заполнения'
+    ]
+);
         $course_info = $request->all();
         $file = $request->file('image');
         $file_name = md5($file->getClientOriginalName().time()) . "." .$file->getClientOriginalExtension();
